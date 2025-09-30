@@ -8,6 +8,11 @@
 .docusaurus
 .cache-loader
 
+# Docusaurus build artifacts (transpiled JS from TS/TSX)
+docusaurus.config.js
+sidebars.js
+src/**/*.js
+
 # Misc
 .DS_Store
 .env.local

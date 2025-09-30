@@ -1,9 +1,131 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import { Mail, MapPin, Clock } from "lucide-react";
 import "./index.css";
 
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+interface FormErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
+
 const ContactUs: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
+
+  // Handle input changes
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    // Clear error for this field when user starts typing
+    if (errors[name as keyof FormErrors]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: undefined,
+      }));
+    }
+  };
+
+  // Validate form
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = "First name is required";
+    }
+
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = "Last name is required";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!formData.subject) {
+      newErrors.subject = "Please select a subject";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters long";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Validate form
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+
+    try {
+      // Simulate API call (replace with actual API endpoint)
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Success
+      setSubmitStatus({
+        type: "success",
+        message: "Thank you for your message! We'll get back to you within 24-48 hours.",
+      });
+
+      // Reset form
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      // Error
+      setSubmitStatus({
+        type: "error",
+        message: "Something went wrong. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <Layout
       title="Contact Us"
@@ -119,59 +241,101 @@ const ContactUs: React.FC = () => {
                 Send us a message
               </h2>
               
-              <form className="contact-form">
+              {submitStatus.type && (
+                <div
+                  className={`form-status-message ${
+                    submitStatus.type === "success" ? "success" : "error"
+                  }`}
+                  role="alert"
+                >
+                  {submitStatus.message}
+                </div>
+              )}
+              
+              <form className="contact-form" onSubmit={handleSubmit} noValidate>
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="firstName" className="form-label">
-                      First Name
+                      First Name <span className="required">*</span>
                     </label>
                     <input
                       type="text"
                       id="firstName"
                       name="firstName"
-                      className="form-input"
+                      className={`form-input ${errors.firstName ? "error" : ""}`}
                       placeholder="Your first name"
+                      value={formData.firstName}
+                      onChange={handleChange}
                       required
+                      aria-invalid={!!errors.firstName}
+                      aria-describedby={errors.firstName ? "firstName-error" : undefined}
                     />
+                    {errors.firstName && (
+                      <span className="form-error" id="firstName-error" role="alert">
+                        {errors.firstName}
+                      </span>
+                    )}
                   </div>
                   <div className="form-group">
                     <label htmlFor="lastName" className="form-label">
-                      Last Name
+                      Last Name <span className="required">*</span>
                     </label>
                     <input
                       type="text"
                       id="lastName"
                       name="lastName"
-                      className="form-input"
+                      className={`form-input ${errors.lastName ? "error" : ""}`}
                       placeholder="Your last name"
+                      value={formData.lastName}
+                      onChange={handleChange}
                       required
+                      aria-invalid={!!errors.lastName}
+                      aria-describedby={errors.lastName ? "lastName-error" : undefined}
                     />
+                    {errors.lastName && (
+                      <span className="form-error" id="lastName-error" role="alert">
+                        {errors.lastName}
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="email" className="form-label">
-                    Email Address
+                    Email Address <span className="required">*</span>
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    className="form-input"
+                    className={`form-input ${errors.email ? "error" : ""}`}
                     placeholder="your.email@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                   />
+                  {errors.email && (
+                    <span className="form-error" id="email-error" role="alert">
+                      {errors.email}
+                    </span>
+                  )}
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="subject" className="form-label">
-                    Subject
+                    Subject <span className="required">*</span>
                   </label>
                   <select
                     id="subject"
                     name="subject"
-                    className="form-select"
+                    className={`form-select ${errors.subject ? "error" : ""}`}
+                    value={formData.subject}
+                    onChange={handleChange}
                     required
+                    aria-invalid={!!errors.subject}
+                    aria-describedby={errors.subject ? "subject-error" : undefined}
                   >
                     <option value="">Select a subject</option>
                     <option value="general">General Inquiry</option>
@@ -181,27 +345,42 @@ const ContactUs: React.FC = () => {
                     <option value="feedback">Feedback</option>
                     <option value="other">Other</option>
                   </select>
+                  {errors.subject && (
+                    <span className="form-error" id="subject-error" role="alert">
+                      {errors.subject}
+                    </span>
+                  )}
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="message" className="form-label">
-                    Message
+                    Message <span className="required">*</span>
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={6}
-                    className="form-textarea"
+                    className={`form-textarea ${errors.message ? "error" : ""}`}
                     placeholder="Tell us more about your inquiry..."
+                    value={formData.message}
+                    onChange={handleChange}
                     required
+                    aria-invalid={!!errors.message}
+                    aria-describedby={errors.message ? "message-error" : undefined}
                   ></textarea>
+                  {errors.message && (
+                    <span className="form-error" id="message-error" role="alert">
+                      {errors.message}
+                    </span>
+                  )}
                 </div>
 
                 <button
                   type="submit"
                   className="submit-button"
+                  disabled={isSubmitting}
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </div>
