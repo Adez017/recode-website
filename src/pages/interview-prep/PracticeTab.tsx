@@ -284,7 +284,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
 
           <div className="mb-8 grid gap-8 md:grid-cols-3">
             <motion.div
-              className="group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-200/50 bg-white/80 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800/80"
+              className="group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-200/50 bg-white p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800"
               onClick={() => handleTabNavigation("technical")}
               whileHover={{ scale: 1.03, y: -5 }}
               whileTap={{ scale: 0.98 }}
@@ -300,7 +300,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                 <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                   Technical Deep Dive
                 </h3>
-                <p className="mb-4 leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mb-4 leading-relaxed text-gray-700 dark:text-gray-200">
                   Explore comprehensive technical resources, coding patterns,
                   and algorithm practice.
                 </p>
@@ -321,7 +321,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
             </motion.div>
 
             <motion.div
-              className="group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-200/50 bg-white/80 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800/80"
+              className="group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-200/50 bg-white p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800"
               onClick={() => handleTabNavigation("behavioral")}
               whileHover={{ scale: 1.03, y: -5 }}
               whileTap={{ scale: 0.98 }}
@@ -337,7 +337,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                 <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                   Behavioral Mastery
                 </h3>
-                <p className="mb-4 leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mb-4 leading-relaxed text-gray-700 dark:text-gray-200">
                   Master the STAR method and practice storytelling for
                   behavioral interviews.
                 </p>
@@ -359,7 +359,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
             </motion.div>
 
             <motion.div
-              className="group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-200/50 bg-white/80 p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800/80"
+              className="group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-gray-200/50 bg-white p-8 backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800"
               onClick={() => handleTabNavigation("companies")}
               whileHover={{ scale: 1.03, y: -5 }}
               whileTap={{ scale: 0.98 }}
@@ -375,7 +375,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                 <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                   Company Research
                 </h3>
-                <p className="mb-4 leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mb-4 leading-relaxed text-gray-700 dark:text-gray-200">
                   Research specific companies, their interview processes, and
                   preparation strategies.
                 </p>
@@ -492,12 +492,12 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
       </motion.div>
 
       <motion.div
-        className="mb-8 rounded-2xl border-2 border-gray-200/50 bg-white/90 p-8 shadow-xl backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800/90"
+        className="mb-8 rounded-2xl border-2 border-gray-200/50 bg-white p-8 shadow-xl backdrop-blur-sm dark:border-gray-700/50 dark:bg-gray-800"
         variants={fadeIn}
       >
         <div className="flex flex-wrap items-center gap-8">
           <div className="flex items-center space-x-4">
-            <label className="text-sm font-bold text-gray-700 dark:text-gray-300">
+            <label className="text-sm font-bold text-gray-800 dark:text-gray-200">
               Filter by Type:
             </label>
             <motion.select
@@ -513,7 +513,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
             </motion.select>
           </div>
           <div className="flex items-center space-x-4">
-            <label className="text-sm font-bold text-gray-700 dark:text-gray-300">
+            <label className="text-sm font-bold text-gray-800 dark:text-gray-200">
               Filter by Difficulty:
             </label>
             <motion.select
@@ -529,7 +529,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
             </motion.select>
           </div>
           <motion.div
-            className="rounded-xl border border-gray-200 bg-gradient-to-r from-gray-100 to-slate-100 px-6 py-3 text-sm font-bold text-gray-600 shadow-lg dark:border-gray-600 dark:from-gray-700 dark:to-slate-700 dark:text-gray-400"
+            className="rounded-xl border border-gray-200 bg-gradient-to-r from-gray-100 to-slate-100 px-6 py-3 text-sm font-bold text-gray-700 shadow-lg dark:border-gray-600 dark:from-gray-700 dark:to-slate-700 dark:text-gray-300"
             whileHover={{ scale: 1.05 }}
           >
             <span className="font-black text-blue-600 dark:text-blue-400">
@@ -549,7 +549,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
           {filteredQuestions.map((question, index) => (
             <motion.div
               key={question.id}
-              className={`relative flex h-full flex-col overflow-hidden rounded-2xl border-2 bg-white/95 shadow-xl backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:bg-gray-800/95 ${
+              className={`relative flex h-full flex-col overflow-hidden rounded-2xl border-2 bg-white shadow-xl backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:bg-gray-800 ${
                 activeSession?.questionId === question.id
                   ? "border-blue-500 ring-4 shadow-blue-200/50 ring-blue-200/50 dark:shadow-blue-800/50 dark:ring-blue-800/50"
                   : recentlyCompleted === question.id
@@ -1049,29 +1049,47 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
               desc: "STAR method templates and solution frameworks for better answers",
               color: "orange",
             },
-          ].map((feature, index) => (
-            <motion.div
-              key={index}
-              className="group rounded-2xl border-2 border-gray-200/50 bg-white/80 p-8 text-center shadow-xl backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800/80"
-              whileHover={{ scale: 1.05, y: -5 }}
-              variants={scaleIn}
-              custom={index}
-            >
+          ].map((feature, index) => {
+            // Define explicit color classes for Tailwind JIT compilation
+            const getIconColorClasses = (color: string) => {
+              switch (color) {
+                case "blue":
+                  return "bg-gradient-to-br from-blue-100 to-blue-200 border-blue-200 dark:from-blue-900/40 dark:to-blue-800/50 dark:border-blue-700";
+                case "green":
+                  return "bg-gradient-to-br from-green-100 to-green-200 border-green-200 dark:from-green-900/40 dark:to-green-800/50 dark:border-green-700";
+                case "purple":
+                  return "bg-gradient-to-br from-purple-100 to-purple-200 border-purple-200 dark:from-purple-900/40 dark:to-purple-800/50 dark:border-purple-700";
+                case "orange":
+                  return "bg-gradient-to-br from-orange-100 to-orange-200 border-orange-200 dark:from-orange-900/40 dark:to-orange-800/50 dark:border-orange-700";
+                default:
+                  return "bg-gradient-to-br from-gray-100 to-gray-200 border-gray-200 dark:from-gray-900/40 dark:to-gray-800/50 dark:border-gray-700";
+              }
+            };
+
+            return (
               <motion.div
-                className={`h-20 w-20 bg-gradient-to-br from-${feature.color}-100 to-${feature.color}-200 dark:from-${feature.color}-900/40 dark:to-${feature.color}-800/50 mx-auto mb-6 flex items-center justify-center rounded-2xl border shadow-lg border-${feature.color}-200 dark:border-${feature.color}-700 transition-transform duration-300 group-hover:scale-110`}
-                whileHover={{ rotate: [0, -10, 10, 0] }}
-                transition={{ duration: 0.5 }}
+                key={index}
+                className="group rounded-2xl border-2 border-gray-200/50 bg-white p-8 text-center shadow-xl backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800"
+                whileHover={{ scale: 1.05, y: -5 }}
+                variants={scaleIn}
+                custom={index}
               >
-                <span className="text-4xl">{feature.icon}</span>
+                <motion.div
+                  className={`mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border shadow-lg transition-transform duration-300 group-hover:scale-110 ${getIconColorClasses(feature.color)}`}
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <span className="text-4xl">{feature.icon}</span>
+                </motion.div>
+                <h4 className="mb-3 text-lg font-black text-gray-900 dark:text-white">
+                  {feature.title}
+                </h4>
+                <p className="text-sm leading-relaxed font-medium text-gray-700 dark:text-gray-200">
+                  {feature.desc}
+                </p>
               </motion.div>
-              <h4 className="mb-3 text-lg font-black text-gray-900 dark:text-white">
-                {feature.title}
-              </h4>
-              <p className="text-sm leading-relaxed font-medium text-gray-600 dark:text-gray-300">
-                {feature.desc}
-              </p>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
       </motion.div>
     </motion.div>
