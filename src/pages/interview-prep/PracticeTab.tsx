@@ -824,17 +824,17 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                               const getLinkTypeColor = (type: string) => {
                                 switch (type) {
                                   case "documentation":
-                                    return "from-blue-100 to-cyan-100 dark:from-blue-900/40 dark:to-cyan-900/40 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-700";
+                                    return "from-blue-100 to-cyan-100 dark:from-blue-900/40 dark:to-cyan-900/40 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-700";
                                   case "tutorial":
-                                    return "from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 text-green-700 dark:text-green-300 border-green-200 dark:border-green-700";
+                                    return "from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 text-green-800 dark:text-green-200 border-green-200 dark:border-green-700";
                                   case "example":
-                                    return "from-yellow-100 to-amber-100 dark:from-yellow-900/40 dark:to-amber-900/40 text-yellow-700 dark:text-yellow-300 border-yellow-200 dark:border-yellow-700";
+                                    return "from-yellow-100 to-amber-100 dark:from-yellow-900/40 dark:to-amber-900/40 text-yellow-900 dark:text-yellow-200 border-yellow-200 dark:border-yellow-700";
                                   case "reference":
-                                    return "from-purple-100 to-violet-100 dark:from-purple-900/40 dark:to-violet-900/40 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-700";
+                                    return "from-purple-100 to-violet-100 dark:from-purple-900/40 dark:to-violet-900/40 text-purple-800 dark:text-purple-200 border-purple-200 dark:border-purple-700";
                                   case "tool":
-                                    return "from-orange-100 to-red-100 dark:from-orange-900/40 dark:to-red-900/40 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-700";
+                                    return "from-orange-100 to-red-100 dark:from-orange-900/40 dark:to-red-900/40 text-orange-800 dark:text-orange-200 border-orange-200 dark:border-orange-700";
                                   default:
-                                    return "from-gray-100 to-slate-100 dark:from-gray-700 dark:to-slate-700 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-600";
+                                    return "from-gray-100 to-slate-100 dark:from-gray-700 dark:to-slate-700 text-gray-800 dark:text-gray-200 border-gray-200 dark:border-gray-600";
                                 }
                               };
 
@@ -859,10 +859,10 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                                     {getLinkTypeIcon(link.type)}
                                   </motion.span>
                                   <div className="min-w-0 flex-1">
-                                    <div className="text-sm leading-tight font-bold group-hover:underline">
+                                    <div className="text-sm leading-tight font-bold text-gray-900 group-hover:underline dark:text-white">
                                       {link.title}
                                     </div>
-                                    <div className="mt-1 text-xs font-medium capitalize opacity-75">
+                                    <div className="mt-1 text-xs font-medium text-gray-700 capitalize opacity-90 dark:text-gray-300">
                                       {link.type.replace("-", " ")}
                                     </div>
                                   </div>
@@ -1067,7 +1067,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
               <h4 className="mb-3 text-lg font-black text-gray-900 dark:text-white">
                 {feature.title}
               </h4>
-              <p className="text-sm leading-relaxed font-medium text-gray-600 dark:text-gray-300">
+              <p className="text-sm leading-relaxed font-medium text-gray-700 dark:text-gray-300">
                 {feature.desc}
               </p>
             </motion.div>
