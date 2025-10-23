@@ -34,7 +34,7 @@ const PrivacyPolicy: React.FC = () => {
         </div>
 
         {/* Introduction Card */}
-        <div className="mb-8 rounded-2xl border border-gray-200 bg-gradient-to-br from-green-50 to-blue-50 p-6 shadow-sm dark:border-gray-700 dark:from-green-900/20 dark:to-blue-900/20">
+        <div className="mb-8 rounded-2xl border border-gray-200 bg-gradient-to-br from-green-50 to-blue-50 p-6 shadow-sm dark:border-gray-600 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-800">
           <p className="text-base leading-7 text-gray-700 dark:text-gray-300">
             Welcome to{" "}
             <a
@@ -59,7 +59,7 @@ const PrivacyPolicy: React.FC = () => {
             how we collect, use, disclose, and safeguard your information when
             you visit our website.
           </p>
-          <div className="mt-4 rounded-lg bg-white/60 p-4 dark:bg-gray-800/60">
+          <div className="mt-4 rounded-lg bg-white/60 p-4 dark:bg-gray-900/60">
             <p className="text-sm text-gray-600 dark:text-gray-400">
               By accessing or using our website, you consent to the terms of
               this Privacy Policy. If you do not agree with the terms of this
@@ -69,7 +69,7 @@ const PrivacyPolicy: React.FC = () => {
         </div>
 
         {/* Information We Collect Section */}
-        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-600 dark:bg-gray-800">
           <div className="mb-4 flex items-center gap-3">
             <div className="rounded-lg bg-blue-100 p-2 dark:bg-blue-900/30">
               <svg
@@ -100,7 +100,7 @@ const PrivacyPolicy: React.FC = () => {
         </div>
 
         {/* What personal data we collect Section */}
-        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-600 dark:bg-gray-800">
           <div className="mb-4 flex items-center gap-3">
             <div className="rounded-lg bg-purple-100 p-2 dark:bg-purple-900/30">
               <svg
@@ -250,7 +250,7 @@ const PrivacyPolicy: React.FC = () => {
         {/* Two Column Grid for Shorter Sections */}
         <div className="mb-8 grid gap-6 md:grid-cols-2">
           {/* How long we retain your data */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-600 dark:bg-gray-800">
             <div className="mb-4 flex items-center gap-3">
               <div className="rounded-lg bg-orange-100 p-2 dark:bg-orange-900/30">
                 <svg
@@ -280,7 +280,7 @@ const PrivacyPolicy: React.FC = () => {
           </div>
 
           {/* Data Retention */}
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-600 dark:bg-gray-800">
             <div className="mb-4 flex items-center gap-3">
               <div className="rounded-lg bg-teal-100 p-2 dark:bg-teal-900/30">
                 <svg
@@ -315,7 +315,7 @@ const PrivacyPolicy: React.FC = () => {
         </div>
 
         {/* Your Rights Section */}
-        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-600 dark:bg-gray-800">
           <div className="mb-4 flex items-center gap-3">
             <div className="rounded-lg bg-pink-100 p-2 dark:bg-pink-900/30">
               <svg
@@ -348,7 +348,7 @@ const PrivacyPolicy: React.FC = () => {
         </div>
 
         {/* Third-Party Links Section */}
-        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-600 dark:bg-gray-800">
           <div className="mb-4 flex items-center gap-3">
             <div className="rounded-lg bg-cyan-100 p-2 dark:bg-cyan-900/30">
               <svg
@@ -379,7 +379,7 @@ const PrivacyPolicy: React.FC = () => {
         </div>
 
         {/* Children's Privacy Section */}
-        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-600 dark:bg-gray-800">
           <div className="mb-4 flex items-center gap-3">
             <div className="rounded-lg bg-yellow-100 p-2 dark:bg-yellow-900/30">
               <svg
@@ -413,7 +413,7 @@ const PrivacyPolicy: React.FC = () => {
         </div>
 
         {/* What third parties we receive data from Section */}
-        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="mb-8 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-600 dark:bg-gray-800">
           <div className="mb-4 flex items-center gap-3">
             <div className="rounded-lg bg-indigo-100 p-2 dark:bg-indigo-900/30">
               <svg
@@ -445,7 +445,7 @@ const PrivacyPolicy: React.FC = () => {
         </div>
 
         {/* Contact Us Section - Highlighted */}
-        <div className="rounded-2xl border-2 border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 p-8 shadow-lg dark:border-green-600 dark:from-green-900/30 dark:to-emerald-900/30">
+        <div className="rounded-2xl border-2 border-green-500 bg-gradient-to-br from-green-50 to-emerald-50 p-8 shadow-lg dark:border-green-600 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-800">
           <div className="mb-4 flex items-center gap-3">
             <div className="rounded-lg bg-green-100 p-2 dark:bg-green-900/50">
               <svg
