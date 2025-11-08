@@ -1,0 +1,39 @@
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+/* For list view (cards) */
+.title:where(:has(> a)) {
+  font-size: 1.5rem;
+}
+
+.title a {
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.title a:hover {
+  color: var(--ifm-color-primary);
+}
+
+/* For individual blog post pages */
+.title:not(:has(> a)) {
+  font-size: 3rem;
+}
+
+/**
+  Blog post title should be smaller on smaller devices
+**/
+@media (max-width: 576px) {
+  .title:not(:has(> a)) {
+    font-size: 2rem;
+  }
+  
+  .title {
+    font-size: 1.25rem;
+  }
+}
