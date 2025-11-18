@@ -7,6 +7,7 @@
 
 /* You can override the default Infima variables here. */
 @import "tailwindcss";
+@import "./blog-post.css";
 
 /* ===== UNIFIED SIDEBAR STYLING ===== */
 /**
