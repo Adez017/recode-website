@@ -5,6 +5,7 @@ import {ThemeClassNames} from '@docusaurus/theme-common';
 import EditMetaRow from '@theme/EditMetaRow';
 import TagsListInline from '@theme/TagsListInline';
 import ReadMoreLink from '@theme/BlogPostItem/Footer/ReadMoreLink';
+import SocialShare from '@theme/BlogPostItem/SocialShare';
 
 export default function BlogPostItemFooter(): ReactNode {
   const {metadata, isBlogPostPage} = useBlogPost();
@@ -34,6 +35,7 @@ export default function BlogPostItemFooter(): ReactNode {
 
     return (
       <footer className="docusaurus-mt-lg">
+        <SocialShare />
         {tagsExists && (
           <div
             className={clsx(
