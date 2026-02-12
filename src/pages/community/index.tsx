@@ -1,22 +1,77 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
 import ScrollBottomToTop from "@site/src/components/scroll/bottom-to-top";
+import { CommunityStatsProvider } from "@site/src/lib/statsProvider";
+import { LandingCommunity } from "@site/src/components/Community";
 import "./community.css";
 
-interface ContributionSection {
+interface CommunityChannel {
+  id: string;
+  title: string;
+  icon: string;
+  description: string;
+  buttonText: string;
+  url: string;
+  color: string;
+}
+
+interface ContributeCard {
   id: string;
   title: string;
   icon: string;
   description: string;
   items: string[];
-  details?: string[];
+  details: string[];
   links: { text: string; url: string }[];
   color: string;
 }
 
-const contributionSections: ContributionSection[] = [
+const communityChannels: CommunityChannel[] = [
+  {
+    id: "discord",
+    title: "Discord",
+    icon: "💬",
+    description:
+      "Chat with fellow developers, get help with your projects, and share your knowledge in real time.",
+    buttonText: "Join Discord",
+    url: "https://discord.gg/b6ffxhXRNH",
+    color: "#5865F2",
+  },
+  {
+    id: "github",
+    title: "GitHub",
+    icon: "🐙",
+    description:
+      "Explore our open-source repos, contribute code, report bugs, and collaborate on exciting projects.",
+    buttonText: "View GitHub",
+    url: "https://github.com/recodehive?view_as=public",
+    color: "#2e8555",
+  },
+  {
+    id: "whatsapp",
+    title: "WhatsApp",
+    icon: "📱",
+    description:
+      "Stay connected on the go. Get updates, share resources, and network with community members.",
+    buttonText: "Join WhatsApp",
+    url: "https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t",
+    color: "#25D366",
+  },
+  {
+    id: "discussions",
+    title: "Discussions",
+    icon: "🗣️",
+    description:
+      "Ask questions, share ideas, and engage in thoughtful conversations with the community.",
+    buttonText: "Join Discussions",
+    url: "https://github.com/recodehive/recode-website/discussions",
+    color: "#8b5cf6",
+  },
+];
+
+const contributeCards: ContributeCard[] = [
   {
     id: "code",
     title: "Code",
@@ -77,7 +132,7 @@ const contributionSections: ContributionSection[] = [
     links: [
       { text: "Discord", url: "https://discord.gg/b6ffxhXRNH" },
       {
-        text: "Whatsapp",
+        text: "WhatsApp",
         url: "https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t",
       },
     ],
@@ -101,7 +156,7 @@ const contributionSections: ContributionSection[] = [
     links: [
       { text: "Discord", url: "https://discord.gg/b6ffxhXRNH" },
       {
-        text: "Whatsapp",
+        text: "WhatsApp",
         url: "https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t",
       },
       { text: "GitHub", url: "https://github.com/recodehive" },
@@ -110,72 +165,8 @@ const contributionSections: ContributionSection[] = [
   },
 ];
 
-const tableOfContents = [
-  { id: "how-you-can-contribute", title: "How You Can Contribute", icon: "⚡" },
-  { id: "code", title: "Code", icon: "💻" },
-  { id: "documentation", title: "Documentation", icon: "📚" },
-  { id: "community", title: "Community", icon: "🤝" },
-  { id: "get-started", title: "Get Started", icon: "🚀" },
-];
-
 export default function CommunityPage(): React.ReactElement {
-  const [activeSections, setActiveSections] = useState<string[]>([
-    "how-you-can-contribute",
-  ]);
-  const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const [openDropdowns, setOpenDropdowns] = useState<string[]>([]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = tableOfContents.map((item) => item.id);
-      const midpoint = window.innerHeight * 0.4;
-      const visible: string[] = [];
-
-      sections.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= midpoint && rect.bottom >= midpoint) {
-            visible.push(id);
-          }
-        }
-      });
-
-      if (visible.length === 1) {
-        const current = visible[0];
-        const element = document.getElementById(current);
-        if (element) {
-          const rowTop = element.offsetTop;
-          const siblings = sections.filter((id) => {
-            const sib = document.getElementById(id);
-            return sib && sib.offsetTop === rowTop;
-          });
-          visible.push(...siblings.filter((id) => id !== current));
-        }
-      }
-
-      if (visible.length > 0) {
-        setActiveSections(visible);
-        if (selectedSection && !visible.includes(selectedSection)) {
-          setSelectedSection(null);
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [selectedSection]);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80;
-      const top = element.offsetTop - offset;
-      window.scrollTo({ top, behavior: "smooth" });
-      setSelectedSection(sectionId);
-    }
-  };
 
   const toggleDropdown = (itemId: string) => {
     setOpenDropdowns((prev) =>
@@ -184,15 +175,6 @@ export default function CommunityPage(): React.ReactElement {
         : [...prev, itemId],
     );
   };
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   return (
     <Layout
@@ -211,7 +193,7 @@ export default function CommunityPage(): React.ReactElement {
           />
         </Head>
 
-        <main className="community-page">
+        <main className="community-main">
           {/* Hero Section */}
           <section className="community-hero">
             <div className="community-hero-background">
@@ -219,257 +201,271 @@ export default function CommunityPage(): React.ReactElement {
               <div className="hero-particle"></div>
               <div className="hero-particle"></div>
             </div>
-            <div className="container">
+            <div className="community-container">
               <motion.div
                 className="community-hero-content"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="hero-icon">🐝</div>
+                <div className="hero-badge">🐝 Community</div>
                 <h1 className="community-hero-title">
-                  Welcome to recode hive Community
+                  Learn, Share &amp; Grow
+                  <br />
+                  <span className="hero-title-highlight">Together</span>
                 </h1>
                 <p className="community-hero-description">
-                  Welcome to <strong>recode hive</strong> — a community built
-                  for everyone to <span className="highlight">learn</span>,{" "}
-                  <span className="highlight">share</span>, and{" "}
-                  <span className="highlight">grow</span>. Whether you're a{" "}
-                  <span className="highlight">developer 👨‍💻</span>,{" "}
-                  <span className="highlight">designer 🎨</span>, or just
-                  someone interested in exploring new ideas 💡, we're excited to
-                  have you here!
+                  Welcome to <strong>recode hive</strong> — a community for{" "}
+                  <span className="highlight">developers 👨‍💻</span>,{" "}
+                  <span className="highlight">designers 🎨</span>, and everyone
+                  curious about new ideas 💡. Join thousands of members who
+                  learn, share, and grow together.
                 </p>
+                <div className="hero-actions">
+                  <a
+                    href="https://discord.gg/b6ffxhXRNH"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hero-btn hero-btn-primary"
+                  >
+                    Join Community
+                  </a>
+                  <a
+                    href="https://github.com/recodehive"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hero-btn hero-btn-secondary"
+                  >
+                    Explore GitHub
+                  </a>
+                </div>
               </motion.div>
             </div>
           </section>
 
-          {/* How You Can Contribute Header */}
-          <section id="how-you-can-contribute" className="contribution-header">
-            <div className="container">
+          {/* Community Channels Section */}
+          <section className="community-channels-section">
+            <div className="community-container">
               <motion.div
-                className="contribution-header-content"
+                className="section-heading"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <h2 className="section-heading-title">
+                  Connect with the Community
+                </h2>
+                <p className="section-heading-description">
+                  Find your space in our community. Join the conversation
+                  wherever you feel most at home.
+                </p>
+              </motion.div>
+
+              <div className="channels-grid">
+                {communityChannels.map((channel, index) => (
+                  <motion.a
+                    key={channel.id}
+                    href={channel.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="channel-card"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    whileHover={{ y: -4 }}
+                    style={
+                      {
+                        "--channel-color": channel.color,
+                      } as React.CSSProperties
+                    }
+                  >
+                    <div className="channel-icon-wrapper">
+                      <span className="channel-icon">{channel.icon}</span>
+                    </div>
+                    <h3 className="channel-title">{channel.title}</h3>
+                    <p className="channel-description">
+                      {channel.description}
+                    </p>
+                    <span className="channel-btn">{channel.buttonText} →</span>
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Community Stats Section */}
+          <section className="community-stats-section">
+            <div className="community-container">
+              <motion.div
+                className="section-heading"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <div className="contribution-icon">⚡</div>
-                <h2 className="contribution-title">How You Can Contribute</h2>
-                <p className="contribution-description">
-                  There are many ways to get involved in recode hive. Here's how
-                  you can contribute:
+                <h2 className="section-heading-title">
+                  Our Community in Numbers
+                </h2>
+                <p className="section-heading-description">
+                  See the impact our amazing community is making across open
+                  source.
                 </p>
               </motion.div>
+              <CommunityStatsProvider>
+                <LandingCommunity />
+              </CommunityStatsProvider>
             </div>
           </section>
 
-          {/* Scrollable Content Sections */}
-          <section className="community-content">
-            <div className="container">
-              <div className="community-layout">
-                {/* Main Content */}
-                <div className="contribution-sections">
-                  {contributionSections.map((section, index) => (
-                    <motion.div
-                      key={section.id}
-                      id={section.id}
-                      className={`contribution-section ${
-                        (
-                          isMobile
-                            ? activeSections.includes(section.id)
-                            : selectedSection === section.id
-                        )
-                          ? "selected"
-                          : ""
-                      }`}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.1 * index }}
-                    >
-                      <div className="section-header">
-                        <div
-                          className="section-icon"
-                          style={{ backgroundColor: section.color }}
-                        >
-                          {section.icon}
-                        </div>
-                        <h3 className="section-title">{section.title}</h3>
-                      </div>
+          {/* Contribute Section */}
+          <section className="community-contribute-section">
+            <div className="community-container">
+              <motion.div
+                className="section-heading"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <h2 className="section-heading-title">How You Can Contribute</h2>
+                <p className="section-heading-description">
+                  There are many ways to get involved in recode hive. Find what
+                  excites you and start contributing!
+                </p>
+              </motion.div>
 
-                      <p className="section-description">
-                        {section.description}
-                      </p>
-
-                      <ul className="section-items">
-                        {section.items.map((item, itemIndex) => (
-                          <React.Fragment key={itemIndex}>
-                            <motion.li
-                              className="section-item"
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{
-                                duration: 0.3,
-                                delay: 0.1 * index + 0.05 * itemIndex,
-                              }}
-                              onClick={() =>
-                                toggleDropdown(`${section.id}-${itemIndex}`)
-                              }
-                              style={{ cursor: "pointer" }}
-                            >
-                              <span
-                                className={`item-arrow ${openDropdowns.includes(`${section.id}-${itemIndex}`) ? "rotate" : ""}`}
-                              >
-                                ▶
-                              </span>
-                              {item}
-                            </motion.li>
-
-                            {section.details &&
-                              openDropdowns.includes(
-                                `${section.id}-${itemIndex}`,
-                              ) && (
-                                <motion.div
-                                  className="section-item-details"
-                                  initial={{ opacity: 0, height: 0 }}
-                                  animate={{ opacity: 1, height: "auto" }}
-                                  transition={{ duration: 0.3 }}
-                                >
-                                  <p>{section.details[itemIndex]}</p>
-                                </motion.div>
-                              )}
-                          </React.Fragment>
-                        ))}
-                      </ul>
-
-                      {section.links.length > 0 && (
-                        <div className="section-links">
-                          <div className="links-header">
-                            <span className="links-icon">🔗</span>
-                            <span>
-                              Find our{" "}
-                              {section.id === "code"
-                                ? "codebase"
-                                : section.id === "documentation"
-                                  ? "documentation"
-                                  : section.id === "community"
-                                    ? "conversation"
-                                    : "resources"}{" "}
-                              on:
-                            </span>
-                          </div>
-                          <div className="links-container">
-                            {section.links.map((link, linkIndex) => (
-                              <motion.a
-                                key={linkIndex}
-                                href={link.url}
-                                className="resource-link"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={
-                                  {
-                                    "--link-color": section.color,
-                                  } as React.CSSProperties
-                                }
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                              >
-                                {link.text}
-                              </motion.a>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </motion.div>
-                  ))}
-
-                  {/* Thank You Section */}
+              <div className="contribute-grid">
+                {contributeCards.map((card, index) => (
                   <motion.div
-                    id="thank-you"
-                    className="thank-you-section"
+                    key={card.id}
+                    className="contribute-card"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
                   >
-                    <div className="thank-you-card">
-                      <div className="thank-you-header">
-                        <div className="thank-you-icons">
-                          <span className="thank-icon">💚</span>
-                          <span className="thank-icon">🎉</span>
-                          <span className="thank-icon">✨</span>
-                        </div>
+                    <div className="contribute-card-header">
+                      <div
+                        className="contribute-card-icon"
+                        style={{ backgroundColor: card.color }}
+                      >
+                        {card.icon}
                       </div>
+                      <h3 className="contribute-card-title">{card.title}</h3>
+                    </div>
 
-                      <div className="thank-you-content">
-                        <p className="thank-you-main">
-                          Thank you for your interest in{" "}
-                          <strong>recode hive</strong>!
-                        </p>
-                        <p className="thank-you-description">
-                          We're thrilled to have you here and can't wait to{" "}
-                          <span className="highlight collaborate">
-                            collaborate
-                          </span>
-                          , <span className="highlight learn">learn</span>, and{" "}
-                          <span className="highlight grow">grow</span> —
-                          together. 🌱
-                        </p>
+                    <p className="contribute-card-description">
+                      {card.description}
+                    </p>
 
-                        <blockquote className="thank-you-quote">
-                          <div className="quote-icon">🐝</div>
-                          <em>
-                            Let's make this community the best it can bee!
-                          </em>
-                        </blockquote>
+                    <ul className="contribute-card-items">
+                      {card.items.map((item, itemIndex) => (
+                        <React.Fragment key={itemIndex}>
+                          <li
+                            className="contribute-card-item"
+                            onClick={() =>
+                              toggleDropdown(`${card.id}-${itemIndex}`)
+                            }
+                          >
+                            <span
+                              className={`item-arrow ${openDropdowns.includes(`${card.id}-${itemIndex}`) ? "rotate" : ""}`}
+                            >
+                              ▶
+                            </span>
+                            {item}
+                          </li>
 
-                        <div className="support-section">
-                          <div className="support-icon">💬</div>
+                          {openDropdowns.includes(
+                            `${card.id}-${itemIndex}`,
+                          ) && (
+                            <motion.div
+                              className="contribute-item-details"
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <p>{card.details[itemIndex]}</p>
+                            </motion.div>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </ul>
+
+                    {card.links.length > 0 && (
+                      <div className="contribute-card-links">
+                        {card.links.map((link, linkIndex) => (
                           <a
-                            href="https://github.com/recodehive/recode-website/discussions"
+                            key={linkIndex}
+                            href={link.url}
+                            className="contribute-link"
                             target="_blank"
                             rel="noopener noreferrer"
-                            style={{ color: "inherit" }}
+                            style={
+                              {
+                                "--link-color": card.color,
+                              } as React.CSSProperties
+                            }
                           >
-                            <p className="support-text">
-                              We're here to help and support you throughout your
-                              journey — don't hesitate to reach out.
-                            </p>
+                            {link.text} ↗
                           </a>
-                        </div>
+                        ))}
                       </div>
-                    </div>
+                    )}
                   </motion.div>
-                </div>
-
-                {/* Table of Contents Sidebar */}
-                <motion.div
-                  className="table-of-contents"
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  <div className="toc-header">
-                    <span className="toc-icon">⚡</span>
-                    <h4>How You Can Contribute</h4>
-                  </div>
-                  <nav className="toc-nav">
-                    {tableOfContents.map((item) => (
-                      <button
-                        key={item.id}
-                        className={`toc-item ${activeSections.includes(item.id) ? "active" : ""}`}
-                        onClick={() => scrollToSection(item.id)}
-                      >
-                        <span className="toc-item-icon">{item.icon}</span>
-                        <span className="toc-item-text">{item.title}</span>
-                      </button>
-                    ))}
-                  </nav>
-                </motion.div>
+                ))}
               </div>
+            </div>
+          </section>
+
+          {/* CTA / Thank You Section */}
+          <section className="community-cta-section">
+            <div className="community-container">
+              <motion.div
+                className="cta-card"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <div className="cta-icons">
+                  <span className="cta-icon">💚</span>
+                  <span className="cta-icon">🎉</span>
+                  <span className="cta-icon">✨</span>
+                </div>
+                <h2 className="cta-title">
+                  Thank you for being part of recode hive!
+                </h2>
+                <p className="cta-description">
+                  We're thrilled to have you here and can't wait to{" "}
+                  <span className="highlight collaborate">collaborate</span>,{" "}
+                  <span className="highlight learn">learn</span>, and{" "}
+                  <span className="highlight grow">grow</span> — together. 🌱
+                </p>
+
+                <blockquote className="cta-quote">
+                  <span className="cta-quote-icon">🐝</span>
+                  <em>Let's make this community the best it can bee!</em>
+                </blockquote>
+
+                <div className="cta-actions">
+                  <a
+                    href="https://discord.gg/b6ffxhXRNH"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hero-btn hero-btn-primary"
+                  >
+                    Get Started Now
+                  </a>
+                  <a
+                    href="https://github.com/recodehive/recode-website/discussions"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hero-btn hero-btn-secondary"
+                  >
+                    💬 Reach Out Anytime
+                  </a>
+                </div>
+              </motion.div>
             </div>
           </section>
         </main>
 
-        {/* Scroll to Top Button - Same as Home Page */}
         <ScrollBottomToTop />
       </div>
     </Layout>
