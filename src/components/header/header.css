@@ -339,9 +339,7 @@
   justify-content: center;
 }
 
-/* Keep legacy selectors working (referenced elsewhere) */
-.chh__header--body { display: none; }
-.chh__header { display: none; }
+/* Keep legacy selectors so any external CSS referencing them doesn't break */
 
 /* ===== Responsive ===== */
 @media screen and (max-width: 768px) {

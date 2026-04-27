@@ -45,7 +45,7 @@ export function BlogCarousel() {
       >
         <span className="blog-carousel-badge">📰 Latest from the Blog</span>
         <h2 className="blog-carousel-title">
-          Insights &amp; Tutorials
+          Insights & Tutorials
         </h2>
         <p className="blog-carousel-subtitle">
           Fresh articles, deep-dives and how-tos from the recode hive community.
