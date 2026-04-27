@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import BlogCard from "./blogCard";
 import blogs from "../../database/blogs";
 import Autoplay from "embla-carousel-autoplay";
+import { motion } from "framer-motion";
 import "./blogCarousel.css";
 
 export function BlogCarousel() {
@@ -33,7 +34,24 @@ export function BlogCarousel() {
   }, [api]);
 
   return (
-    <div className="max-w-8xl mx-auto w-full px-4">
+    <div className="max-w-8xl mx-auto w-full px-4 py-10">
+      {/* Section Header */}
+      <motion.div
+        className="mb-10 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+      >
+        <span className="blog-carousel-badge">📰 Latest from the Blog</span>
+        <h2 className="blog-carousel-title">
+          Insights &amp; Tutorials
+        </h2>
+        <p className="blog-carousel-subtitle">
+          Fresh articles, deep-dives and how-tos from the recode hive community.
+        </p>
+      </motion.div>
+
       <Carousel
         setApi={setApi}
         className="w-full"

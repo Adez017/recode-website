@@ -1,5 +1,51 @@
 /* Blog Carousel Card Styles - Matching Blog Page Design */
 
+/* ===== Section Header ===== */
+.blog-carousel-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #555;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+[data-theme="dark"] .blog-carousel-badge {
+  color: #888;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.blog-carousel-title {
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #0f0f0f;
+  margin: 0 0 12px;
+}
+
+[data-theme="dark"] .blog-carousel-title {
+  color: #f0f0f0;
+}
+
+.blog-carousel-subtitle {
+  font-size: clamp(14px, 1.6vw, 16px);
+  color: #666;
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+[data-theme="dark"] .blog-carousel-subtitle {
+  color: #888;
+}
+
 /* Article Card */
 .article-card {
   background: white;
@@ -429,14 +475,14 @@
 
 /* Blog Carousel Section Enhancements */
 .blog-carousel-section {
-  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 50%, #e8ebff 100%);
+  background-color: #ffffff;
   padding: 5px;
   position: relative;
   overflow: hidden;
 }
 
 [data-theme="dark"] .blog-carousel-section {
-  background: linear-gradient(135deg, #1b1b1d 0%, #121212 50%, #1a202c 100%);
+  background-color: #0d0d0d;
 }
 
 /* Enhanced Focus States */
