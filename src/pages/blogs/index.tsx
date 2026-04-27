@@ -4,6 +4,7 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import blogs from "../../database/blogs/index";
 import Head from "@docusaurus/Head";
+import PageHero from "@site/src/components/PageHero";
 
 import "./blogs-new.css";
 
@@ -88,41 +89,18 @@ export default function Blogs(): React.JSX.Element {
         />
       </Head>
 
-      <div className="blog-page">
-        {/* Background Geometric Shapes */}
-        <div className="bg-shapes">
-          <div className="bg-shape bg-shape-1"></div>
-          <div className="bg-shape bg-shape-2"></div>
-          <div className="bg-shape bg-shape-3"></div>
-          <div className="bg-shape bg-shape-4"></div>
-          <div className="bg-shape bg-shape-5"></div>
-        </div>
+      <PageHero
+        badge="✍️ Articles · Tutorials · Insights"
+        title={
+          <>
+            recode hive{" "}
+            <span className="ph__accent">Blogs</span>
+          </>
+        }
+        subtitle="Discover comprehensive web development articles, tutorials, and insights — from HTML & CSS fundamentals to advanced JavaScript, React, Node.js, DSA, and cutting-edge technologies."
+      />
 
-        {/* Hero Section */}
-        <section className="blog-hero-section">
-          <div className="floating-particles">
-            <div className="particle particle-1"></div>
-            <div className="particle particle-2"></div>
-            <div className="particle particle-3"></div>
-            <div className="particle particle-4"></div>
-            <div className="particle particle-5"></div>
-            <div className="particle particle-6"></div>
-          </div>
-          <div className="blog-hero-container">
-            <div className="hero-content">
-              <h1 className="blog-main-title">
-                Welcome to <span className="gradient-text">recode hive</span>{" "}
-                Blogs
-              </h1>
-              <p className="blog-main-subtitle">
-                Discover comprehensive web development articles, tutorials, and
-                insights covering everything from HTML & CSS fundamentals to
-                advanced JavaScript, React, Node.js, Data Structures &
-                Algorithms, and cutting-edge technologies.
-              </p>
-            </div>
-          </div>
-        </section>
+      <div className="blog-page">
 
         {/* Latest Articles Section */}
         <section className="latest-articles-section">

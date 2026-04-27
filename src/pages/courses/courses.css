@@ -806,6 +806,13 @@ a.courses-button-link:hover {
   scrollbar-width: none;
 }
 
+/* Hero tech tags strip */
+.courses-hero-tags {
+  max-width: 780px;
+  scroll-behavior: smooth;
+}
+
+
 .courses-backdrop-blur {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);

@@ -3,6 +3,7 @@ import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
 import ScrollBottomToTop from "@site/src/components/scroll/bottom-to-top";
+import PageHero from "@site/src/components/PageHero";
 import "./community.css";
 
 interface ContributionSection {
@@ -213,36 +214,16 @@ export default function CommunityPage(): React.ReactElement {
 
         <main className="community-page">
           {/* Hero Section */}
-          <section className="community-hero">
-            <div className="community-hero-background">
-              <div className="hero-particle"></div>
-              <div className="hero-particle"></div>
-              <div className="hero-particle"></div>
-            </div>
-            <div className="container">
-              <motion.div
-                className="community-hero-content"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <div className="hero-icon">🐝</div>
-                <h1 className="community-hero-title">
-                  Welcome to recode hive Community
-                </h1>
-                <p className="community-hero-description">
-                  Welcome to <strong>recode hive</strong> — a community built
-                  for everyone to <span className="highlight">learn</span>,{" "}
-                  <span className="highlight">share</span>, and{" "}
-                  <span className="highlight">grow</span>. Whether you're a{" "}
-                  <span className="highlight">developer 👨‍💻</span>,{" "}
-                  <span className="highlight">designer 🎨</span>, or just
-                  someone interested in exploring new ideas 💡, we're excited to
-                  have you here!
-                </p>
-              </motion.div>
-            </div>
-          </section>
+          <PageHero
+            badge="🐝 Community · Collaborate · Grow"
+            title={
+              <>
+                Welcome to{" "}
+                <span className="ph__accent">recode hive</span> Community
+              </>
+            }
+            subtitle="A community built for everyone to learn, share, and grow. Whether you're a developer, designer, or just someone curious about new ideas — we're excited to have you here!"
+          />
 
           {/* How You Can Contribute Header */}
           <section id="how-you-can-contribute" className="contribution-header">

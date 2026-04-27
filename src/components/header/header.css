@@ -279,6 +279,74 @@
   color: #ffffff;
 }
 
+/* === Social Proof Bar (avatars + star rating) === */
+.chh__hero-social-proof {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.chh__hero-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.chh__hero-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2.5px solid #ffffff;
+  object-fit: cover;
+  margin-left: -10px;
+  background: #f0f0f0;
+  transition: transform 0.2s ease;
+}
+
+.chh__hero-avatar:first-child {
+  margin-left: 0;
+}
+
+.chh__hero-avatar:hover {
+  transform: scale(1.1) translateY(-2px);
+  z-index: 1;
+}
+
+[data-theme="dark"] .chh__hero-avatar {
+  border-color: #1a1a1a;
+}
+
+.chh__hero-social-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.4;
+}
+
+[data-theme="dark"] .chh__hero-social-text {
+  color: #999;
+}
+
+.chh__hero-social-text strong {
+  color: #0f0f0f;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .chh__hero-social-text strong {
+  color: #f0f0f0;
+}
+
+.chh__hero-social-stars {
+  display: flex;
+  gap: 1px;
+  color: #f59e0b;
+  margin-bottom: 1px;
+}
+
 /* === Social Proof / Stats strip === */
 .chh__hero-stats {
   display: flex;
@@ -328,18 +396,6 @@
 [data-theme="dark"] .chh__hero-stat-label {
   color: #666;
 }
-
-/* === Floating Contributors (below hero stats) === */
-.chh__hero-contributors {
-  margin-top: 56px;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-}
-
-/* Keep legacy selectors so any external CSS referencing them doesn't break */
 
 /* ===== Responsive ===== */
 @media screen and (max-width: 768px) {

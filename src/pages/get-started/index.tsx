@@ -6,6 +6,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import Head from "@docusaurus/Head";
 import { useColorMode } from "@docusaurus/theme-common";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import PageHero from "@site/src/components/PageHero";
 
 // Safe hook for color mode that handles SSR
 function useSafeColorMode() {
@@ -756,7 +757,25 @@ function GetStartedContent() {
         />
       </Head>
 
-      <GetStartedHeader />
+      <PageHero
+        badge="🚀 Code · Build · Deploy · Learn"
+        title={
+          <>
+            Transform Your Career{" "}
+            <span className="ph__accent">in Tech</span>
+          </>
+        }
+        subtitle="Master the art of coding with comprehensive learning paths, hands-on challenges, and a thriving open-source community."
+      >
+        <div className="ph__hero-cta-row">
+          <Link className="ph__btn-primary" to="/courses/">
+            Start Learning Now →
+          </Link>
+          <Link className="ph__btn-secondary" to="/docs/GitHub/intro-github">
+            Explore Docs
+          </Link>
+        </div>
+      </PageHero>
 
       <main
         className={`transition-colors duration-300 ${

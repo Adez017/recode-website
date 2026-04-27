@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
+import PageHero from "@site/src/components/PageHero";
 import "./courses.css";
 
 // Animation variants for consistent animations
@@ -466,122 +467,46 @@ function CoursesContent() {
         )}
 
         {/* Hero Section */}
-        <motion.section
-          className="courses-hero relative overflow-hidden border-b px-4 py-16 text-center transition-all duration-500 md:py-24"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-          }}
+        <PageHero
+          badge="📊 Data Engineering · Cloud · ML"
+          title={
+            <>
+              Transform Your Career in{" "}
+              <span className="ph__accent">Data Engineering</span>
+            </>
+          }
+          subtitle="Master data engineering with industry-leading courses designed for modern tech careers — Python, SQL, Spark, Kafka, Cloud, and more."
         >
-          <div className="courses-container">
-            <motion.h1
-              className="courses-heading-1 courses-text-gradient relative z-10 mb-6 tracking-tight md:mb-8"
-              variants={fadeIn}
-            >
-              Transform Your Career
-              <br className="hidden md:block" />
-              <span className="block md:inline">in Data Engineering</span>
-            </motion.h1>
-            <div className="flex w-full justify-center">
-              <motion.p
-                className="courses-text-secondary courses-body-large mb-8 max-w-2xl text-center leading-relaxed font-medium md:mb-12"
-                variants={fadeIn}
-              >
-                Master the art of data engineering with industry-leading courses
-                designed for{" "}
-                <span className="courses-text-gradient font-bold">
-                  modern tech careers
+          {/* Tech Tags */}
+          <div
+            ref={techTagsRef}
+            className="courses-hide-scrollbar courses-hero-tags mt-8 flex gap-2 overflow-x-auto pb-2 whitespace-nowrap"
+          >
+            <div className="flex gap-2 px-2">
+              {techTags.map((tag, idx) => (
+                <span key={idx} className="courses-topic-tag flex-shrink-0">
+                  {tag}
                 </span>
-                .
-              </motion.p>
+              ))}
             </div>
-            <motion.div
-              className="mx-auto mb-12 flex max-w-md flex-col justify-center gap-4 sm:flex-row md:mb-16 md:max-w-none md:gap-6"
-              variants={fadeIn}
-            >
-              <a
-                href="/courses/explore"
-                className="courses-button-primary courses-button-link group courses-backdrop-blur relative overflow-hidden rounded-2xl border border-blue-400/20 px-8 py-3 text-base font-bold shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-blue-500/30 md:px-10 md:py-4 md:text-lg"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Explore Courses
-                  <svg
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1 md:h-5 md:w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </span>
-              </a>
-              <button
-                className="courses-button-secondary group relative overflow-hidden rounded-2xl px-8 py-3 text-base font-bold shadow-2xl transition-all duration-300 hover:scale-105 md:px-10 md:py-4 md:text-lg"
-                onClick={() => handleAction("curriculum")}
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  View Curriculum
-                  <svg
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1 md:h-5 md:w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </motion.div>
           </div>
 
-          {/* Tech Tags */}
-          <motion.div className="courses-container" variants={fadeIn}>
-            <div
-              ref={techTagsRef}
-              className="courses-hide-scrollbar mb-8 flex gap-2 overflow-x-auto pb-4 whitespace-nowrap"
-              style={{ scrollBehavior: "smooth" }}
+          {/* CTA Buttons */}
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <a
+              href="/courses/explore"
+              className="ph__btn-primary"
             >
-              <div className="flex gap-2 px-4 md:px-0">
-                {techTags.map((tag, idx) => (
-                  <span key={idx} className="courses-topic-tag flex-shrink-0">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Partner Logos */}
-            <div className="mt-8">
-              <h3 className="courses-text-secondary courses-body mb-6 text-center font-medium">
-                Students now available at
-              </h3>
-              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
-                {partnerLogos.map((logo, idx) => (
-                  <motion.img
-                    key={idx}
-                    src={logo}
-                    alt="Partner Logo"
-                    className="h-10 w-auto object-contain opacity-70 transition-opacity hover:opacity-100 md:h-12"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </motion.section>
+              Explore Courses →
+            </a>
+            <button
+              className="ph__btn-secondary"
+              onClick={() => handleAction("curriculum")}
+            >
+              View Curriculum
+            </button>
+          </div>
+        </PageHero>
 
         {/* Projects Carousel */}
         <section className="courses-section relative overflow-hidden border-b px-4 py-16 transition-all duration-500 md:py-24">

@@ -3,8 +3,7 @@ import "./header.css";
 import Link from "@docusaurus/Link";
 import { motion } from "framer-motion";
 import ParticlesComponent from "../particle";
-import FloatingContributors from "../FloatingContributors";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, Star } from "lucide-react";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 20 },
@@ -12,6 +11,31 @@ const fadeUp = (delay = 0) => ({
   viewport: { once: true },
   transition: { duration: 0.6, ease: "easeOut", delay },
 });
+
+/* Top contributors for the social-proof bar.
+   Update these with real contributor usernames + avatar URLs when needed. */
+const CONTRIBUTOR_AVATARS = [
+  {
+    login: "sanjay-kv",
+    avatar: "https://avatars.githubusercontent.com/u/30715153?v=4",
+  },
+  {
+    login: "octocat",
+    avatar: "https://avatars.githubusercontent.com/u/583231?v=4",
+  },
+  {
+    login: "hubot",
+    avatar: "https://avatars.githubusercontent.com/u/9919?v=4",
+  },
+  {
+    login: "torvalds",
+    avatar: "https://avatars.githubusercontent.com/u/1024025?v=4",
+  },
+  {
+    login: "gaearon",
+    avatar: "https://avatars.githubusercontent.com/u/810438?v=4",
+  },
+];
 
 const Header: React.FC = () => {
   return (
@@ -52,8 +76,33 @@ const Header: React.FC = () => {
           </Link>
         </motion.div>
 
+        {/* Social proof avatars bar */}
+        <motion.div className="chh__hero-social-proof" {...fadeUp(0.28)}>
+          <div className="chh__hero-avatars">
+            {CONTRIBUTOR_AVATARS.map((c) => (
+              <img
+                key={c.login}
+                src={c.avatar}
+                alt={c.login}
+                className="chh__hero-avatar"
+                loading="lazy"
+              />
+            ))}
+          </div>
+          <div className="chh__hero-social-text">
+            <div className="chh__hero-social-stars">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={12} fill="currentColor" />
+              ))}
+            </div>
+            <span>
+              Joined by <strong>500+</strong> open-source contributors
+            </span>
+          </div>
+        </motion.div>
+
         {/* Stats Strip */}
-        <motion.div className="chh__hero-stats" {...fadeUp(0.3)}>
+        <motion.div className="chh__hero-stats" {...fadeUp(0.35)}>
           <div className="chh__hero-stat-item">
             <span className="chh__hero-stat-number">1000+</span>
             <span className="chh__hero-stat-label">Projects</span>
@@ -75,11 +124,6 @@ const Header: React.FC = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Floating Contributors below stats */}
-      <motion.div className="chh__hero-contributors" {...fadeUp(0.38)}>
-        <FloatingContributors headerEmbedded={true} />
-      </motion.div>
     </section>
   );
 };
