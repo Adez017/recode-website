@@ -1875,38 +1875,44 @@ h3:first-child {
 /* Issue #1367: Increase spacing of table of contents items in blog and docs pages */
 
 /* TOC container */
-.table-of-contents {
-  padding: 0.5rem 0 !important;
-  line-height: 1.7 !important;
+nav.table-of-contents {
+  padding: 0.5rem 0;
+  line-height: 1.7;
 }
 
 /* TOC list items: add vertical spacing between entries */
-.table-of-contents li {
-  margin: 0.6rem 0 !important;
+nav.table-of-contents li,
+.table-of-contents__left-border li {
+  margin: 0.6rem 0;
 }
 
 /* Nested TOC items */
-.table-of-contents ul {
-  padding-left: 1rem !important;
-  margin: 0.3rem 0 !important;
+nav.table-of-contents ul,
+.table-of-contents__left-border ul {
+  padding-left: 1rem;
+  margin: 0.3rem 0;
 }
 
 /* TOC links: improve padding and readability */
-.table-of-contents__link {
-  display: block !important;
-  padding: 0.35rem 0.6rem !important;
-  border-radius: 4px !important;
-  font-size: 0.9rem !important;
-  line-height: 1.6 !important;
+nav.table-of-contents .table-of-contents__link,
+.table-of-contents__left-border .table-of-contents__link {
+  display: block;
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1.6;
   transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.table-of-contents__link:hover,
-.table-of-contents__link--active {
-  color: var(--ifm-color-primary) !important;
-  text-decoration: none !important;
+nav.table-of-contents .table-of-contents__link:hover,
+nav.table-of-contents .table-of-contents__link--active,
+.table-of-contents__left-border .table-of-contents__link:hover,
+.table-of-contents__left-border .table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
 }
 
-.table-of-contents__link--active {
-  font-weight: 600 !important;
+nav.table-of-contents .table-of-contents__link--active,
+.table-of-contents__left-border .table-of-contents__link--active {
+  font-weight: 600;
 }
