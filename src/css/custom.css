@@ -369,6 +369,9 @@ html[data-theme="dark"] .menu__link--active::after {
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-transition-fast: 150ms;
   --ifm-transition-slow: 300ms;
+  /* Issue #1367: Increase TOC item spacing */
+  --ifm-toc-padding-vertical: 0.75rem;
+  --ifm-toc-padding-horizontal: 0.5rem;
 }
 
 /* ======= SECTION 9 :Smooth theme transitions ========== */
@@ -1873,37 +1876,16 @@ h3:first-child {
 
 /* ===== BLOG & DOCS TABLE OF CONTENTS SPACING ===== */
 /* Issue #1367: Increase spacing of table of contents items in blog and docs pages */
+/* Spacing is primarily controlled via --ifm-toc-padding-vertical in :root above. */
 
-/* TOC container */
-nav.table-of-contents {
-  padding: 0.5rem 0;
-  line-height: 1.7;
-}
-
-/* TOC list items: add vertical spacing between entries */
-nav.table-of-contents li,
-.table-of-contents__left-border li {
-  margin: 0.6rem 0;
-}
-
-/* Nested TOC items */
+/* Nested TOC sub-items indentation */
 nav.table-of-contents ul,
 .table-of-contents__left-border ul {
   padding-left: 1rem;
-  margin: 0.3rem 0;
+  margin: 0.25rem 0;
 }
 
-/* TOC links: improve padding and readability */
-nav.table-of-contents .table-of-contents__link,
-.table-of-contents__left-border .table-of-contents__link {
-  display: block;
-  padding: 0.35rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  transition: color 0.2s ease, background-color 0.2s ease;
-}
-
+/* Active / hover highlight */
 nav.table-of-contents .table-of-contents__link:hover,
 nav.table-of-contents .table-of-contents__link--active,
 .table-of-contents__left-border .table-of-contents__link:hover,
