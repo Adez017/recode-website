@@ -1870,3 +1870,43 @@ h3:first-child {
   margin-top: 0;
   margin-bottom: 1rem;
 }
+
+/* ===== BLOG & DOCS TABLE OF CONTENTS SPACING ===== */
+/* Issue #1367: Increase spacing of table of contents items in blog and docs pages */
+
+/* TOC container */
+.table-of-contents {
+  padding: 0.5rem 0;
+  line-height: 1.6;
+}
+
+/* TOC list items: add vertical spacing between entries */
+.table-of-contents li {
+  margin: 0.35rem 0;
+}
+
+/* Nested TOC items */
+.table-of-contents ul {
+  padding-left: 1rem;
+  margin: 0.25rem 0;
+}
+
+/* TOC links: improve padding and readability */
+.table-of-contents__link {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.table-of-contents__link--active {
+  font-weight: 600;
+}
