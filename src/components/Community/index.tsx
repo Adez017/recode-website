@@ -138,7 +138,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
         >
           <img
             className="landing-community__image"
-            src="https://github.com/user-attachments/assets/59f8fa00-c068-4abf-a560-773b4429f682"
+            src="/selfhero.png"
             alt="Founder's note"
             loading="lazy"
           />
