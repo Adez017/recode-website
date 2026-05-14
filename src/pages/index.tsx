@@ -77,7 +77,7 @@ export default function Home(): ReactNode {
             onClick={() => (window.location.href = "https://www.sanjaykv.com/")}
           >
             <img
-              src="/selfhero.png"
+              src="https://github.com/user-attachments/assets/f9de0bc4-8abc-4591-ac98-97a7c313cc46"
               alt="recodehive"
               className="h-full w-full cursor-pointer rounded-2xl object-cover"
             />
