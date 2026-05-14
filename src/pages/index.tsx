@@ -78,7 +78,7 @@ export default function Home(): ReactNode {
           >
             <img
               src="/selfhero.png"
-              alt="Founder's note by Sanjay KV"
+              alt="Homepage banner showing founder's note with signature by Sanjay KV"
               className="h-full w-full cursor-pointer rounded-2xl object-cover"
             />
           </div>
