@@ -139,7 +139,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
           <img
             className="landing-community__image"
             src="/selfhero.png"
-            alt="Founder's note"
+            alt="Community section showing founder's note with signature by Sanjay KV"
             loading="lazy"
           />
           <div className="landing-community__info-text">
