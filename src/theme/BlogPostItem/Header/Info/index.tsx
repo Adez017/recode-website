@@ -58,13 +58,26 @@ function Spacer() {
   return <>{" · "}</>;
 }
 
-function calculatePixelsRead(articleRect: DOMRect): number {
+function calculateReadingProgress(articleRect: DOMRect): number {
   const articleTopInDocument = window.scrollY + articleRect.top;
-  const viewportBottomInDocument = window.scrollY + window.innerHeight;
-  return Math.min(
-    articleRect.height,
-    Math.max(0, viewportBottomInDocument - articleTopInDocument),
+  const articleBottomInDocument = articleTopInDocument + articleRect.height;
+  const viewportTopInDocument = window.scrollY;
+  const viewportBottomInDocument = viewportTopInDocument + window.innerHeight;
+
+  if (viewportBottomInDocument <= articleTopInDocument) {
+    return 0;
+  }
+
+  if (viewportTopInDocument >= articleBottomInDocument) {
+    return 1;
+  }
+
+  const totalScrollableDistance = Math.max(1, articleRect.height - window.innerHeight);
+  const distanceScrolledFromTop = Math.max(
+    0,
+    viewportTopInDocument - articleTopInDocument,
   );
+  return Math.min(1, distanceScrolledFromTop / totalScrollableDistance);
 }
 
 function RemainingTime({readingTime}: {readingTime: number}) {
@@ -97,8 +110,7 @@ function RemainingTime({readingTime}: {readingTime: number}) {
         return;
       }
 
-      const pixelsRead = calculatePixelsRead(articleRect);
-      const progress = pixelsRead / articleRect.height;
+      const progress = calculateReadingProgress(articleRect);
       const computedRemaining = Math.ceil(totalMinutes * (1 - progress));
       setRemainingTime(Math.max(0, computedRemaining));
     };
