@@ -1,4 +1,4 @@
-import React, {type ReactNode, useEffect, useMemo, useState} from "react";
+import React, {type ReactNode, useEffect, useMemo, useRef, useState} from "react";
 import clsx from "clsx";
 import {translate} from "@docusaurus/Translate";
 import {useBlogPost} from "@docusaurus/plugin-content-blog/client";
@@ -58,14 +58,34 @@ function Spacer() {
   return <>{" · "}</>;
 }
 
+function calculatePixelsRead(articleRect: DOMRect): number {
+  const articleTopInDocument = window.scrollY + articleRect.top;
+  const viewportBottomInDocument = window.scrollY + window.innerHeight;
+  return Math.min(
+    articleRect.height,
+    Math.max(0, viewportBottomInDocument - articleTopInDocument),
+  );
+}
+
 function RemainingTime({readingTime}: {readingTime: number}) {
   const totalMinutes = useMemo(() => Math.max(1, Math.ceil(readingTime)), [readingTime]);
   const [remainingTime, setRemainingTime] = useState(totalMinutes);
   const remainingTimePlural = useRemainingTimePlural();
+  const markerRef = useRef<HTMLSpanElement | null>(null);
+  const articleElementRef = useRef<HTMLElement | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
     const updateRemainingTime = () => {
-      const article = document.querySelector("main article");
+      let article = articleElementRef.current;
+      if (!article) {
+        article = markerRef.current?.closest("article") as HTMLElement | null;
+        articleElementRef.current = article;
+      }
       if (!article) {
         setRemainingTime(totalMinutes);
         return;
@@ -77,28 +97,36 @@ function RemainingTime({readingTime}: {readingTime: number}) {
         return;
       }
 
-      const articleTop = window.scrollY + articleRect.top;
-      const viewportBottom = window.scrollY + window.innerHeight;
-      const pixelsRead = Math.min(
-        articleRect.height,
-        Math.max(0, viewportBottom - articleTop),
-      );
+      const pixelsRead = calculatePixelsRead(articleRect);
       const progress = pixelsRead / articleRect.height;
       const computedRemaining = Math.ceil(totalMinutes * (1 - progress));
       setRemainingTime(Math.max(0, computedRemaining));
     };
 
+    const handleScrollOrResize = () => {
+      if (animationFrameRef.current !== null) {
+        return;
+      }
+      animationFrameRef.current = window.requestAnimationFrame(() => {
+        animationFrameRef.current = null;
+        updateRemainingTime();
+      });
+    };
+
     updateRemainingTime();
-    window.addEventListener("scroll", updateRemainingTime, {passive: true});
-    window.addEventListener("resize", updateRemainingTime);
+    window.addEventListener("scroll", handleScrollOrResize, {passive: true});
+    window.addEventListener("resize", handleScrollOrResize);
 
     return () => {
-      window.removeEventListener("scroll", updateRemainingTime);
-      window.removeEventListener("resize", updateRemainingTime);
+      window.removeEventListener("scroll", handleScrollOrResize);
+      window.removeEventListener("resize", handleScrollOrResize);
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
     };
   }, [totalMinutes]);
 
-  return <>{remainingTimePlural(remainingTime)}</>;
+  return <span ref={markerRef}>{remainingTimePlural(remainingTime)}</span>;
 }
 
 export default function BlogPostItemHeaderInfo({className}: Props): ReactNode {
