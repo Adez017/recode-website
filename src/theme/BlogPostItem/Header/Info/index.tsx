@@ -72,6 +72,10 @@ function calculateReadingProgress(articleRect: DOMRect): number {
     return 1;
   }
 
+  if (articleRect.height <= window.innerHeight) {
+    return viewportBottomInDocument >= articleBottomInDocument ? 1 : 0;
+  }
+
   const totalScrollableDistance = Math.max(1, articleRect.height - window.innerHeight);
   const distanceScrolledFromTop = Math.max(
     0,
