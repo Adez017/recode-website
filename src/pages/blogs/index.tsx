@@ -330,7 +330,9 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
                     data-author-tooltip={getAuthorTooltip(author.id)}
                     aria-label={`Open ${author.name} on GitHub`}
                   >
-                    {author.name}
+                    {authors.length > 1
+                      ? author.name.split(" ")[0]
+                      : author.name}
                   </Link>
                 </span>
               ))}
